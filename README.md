@@ -328,7 +328,7 @@ const statusMessage = document.getElementById('status-message');
 const formEndpoint = "https://formsubmit.co/your@email.com"; 
 
 form.addEventListener('submit', function(event) {
-    event.preventDefault(); // Prevent the default form submission
+    event.preventDefault(); 
 
     const formData = new FormData(form);
     const data = Object.fromEntries(formData.entries());

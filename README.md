@@ -1,6 +1,4 @@
 # RelayHackathone
-
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -10,7 +8,8 @@
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
-  <header>
+    <div>
+        <header>
     <div class="logo">Mediumish</div>
     <nav>
       <ul>
@@ -37,9 +36,42 @@
         <h2>Designing Without Color</h2>
         <p class="subtitle">The elegance of grayscale aesthetics.</p>
       </article>
+
+        <section id="aboutLink" class="pagehidden">
+    <p>This minimalist blog celebrates clean, distraction-free design.</p>
+        </section>
       </div>
 
-      <!DOCTYPE html>
+
+  </main>
+<br><br><br><br><br><br>
+  
+
+   
+
+  <section id="articlePage" class="page hidden">
+    
+    <footer>
+      <p>© <span id="footerYear"></span> Mediumish Blog</p>
+      
+    </footer>
+  </section>
+   <button id="backBtn">← Back to Home</button>
+
+  <script src="script.js"></script>
+</body>
+</html>
+
+    </div>
+  
+<div>
+
+    <br>
+    <br><br><br><br><br><br><br><br><br><br><br>
+  <br><br><br><br><br><br><br><br><br><br>
+  <br><br><br><br><br><br><br><br><br><br>
+
+<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
@@ -82,23 +114,9 @@
 </body>
 </html>
 
-  </main>
 
-  <section id="aboutLink" class="pagehidden">
-    <p>This minimalist blog celebrates clean, distraction-free design.</p>
-  </section>
+</div>
 
-  <section id="articlePage" class="page hidden">
-    
-    <footer>
-      <p>© <span id="footerYear"></span> Mediumish Blog</p>
-    </footer>
-  </section>
-   <button id="backBtn">← Back to Home</button>
-
-  <script src="script.js"></script>
-</body>
-</html>
 
 body {
   font-family: Georgia, serif;

@@ -38,6 +38,50 @@
         <p class="subtitle">The elegance of grayscale aesthetics.</p>
       </article>
       </div>
+
+      <!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Music Club Event Sign-up</title>
+    <link rel="stylesheet" href="style2.css">
+</head>
+<body>
+
+    <div class="form-container">
+        <h2>Music Club Event Sign-up</h2>
+        <form id="music-club-form">
+            <div class="form-group">
+                <label for="name">Full Name</label>
+                <input type="text" id="name" name="Name" required>
+            </div>
+            
+            <div class="form-group">
+                <label for="email">Email Address</label>
+                <input type="email" id="email" name="Email" required>
+            </div>
+            
+            <div class="form-group">
+                <label for="event">Select an Event</label>
+                <select id="event" name="Event Selection" required>
+                    <option value="" disabled selected>-- Choose an event --</option>
+                    <option value="Acoustic Night">Acoustic Night</option>
+                    <option value="Jazz Jam Session">Jazz Jam Session</option>
+                    <option value="Open Mic Night">Open Mic Night</option>
+                    <option value="Club Concert">Club Concert</option>
+                </select>
+            </div>
+            
+            <button type="submit">Sign Up</button>
+        </form>
+        <div id="status-message" class="status-message"></div>
+    </div>
+
+    <script src="script2.js"></script>
+</body>
+</html>
+
   </main>
 
   <section id="aboutLink" class="pagehidden">
@@ -137,6 +181,83 @@ footer {
   margin-top: 150px;
 }
 
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f4f4f4;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    margin: 0;
+}
+
+.form-container {
+    background-color: #fff;
+    padding: 30px;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    width: 100%;
+    max-width: 400px;
+    box-sizing: border-box;
+}
+
+h2 {
+    text-align: center;
+    color: #333;
+    margin-bottom: 20px;
+}
+
+.form-group {
+    margin-bottom: 15px;
+}
+
+label {
+    display: block;
+    margin-bottom: 5px;
+    color: #555;
+}
+
+input[type="text"],
+input[type="email"],
+select {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-sizing: border-box;
+}
+
+button {
+    width: 100%;
+    padding: 12px;
+    background-color: #3498db;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    font-size: 16px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+button:hover {
+    background-color: #2980b9;
+}
+
+.status-message {
+    margin-top: 20px;
+    text-align: center;
+    font-weight: bold;
+}
+
+.status-message.success {
+    color: #27ae60;
+}
+
+.status-message.error {
+    color: #c0392b;
+}
+
+
 
 const pages = document.querySelectorAll('.page');
 const homeLink = document.getElementById('homeLink');
@@ -181,3 +302,40 @@ function openArticle(id) {
   content.innerHTML = `<h2>${article.title}</h2>${article.content}`;
   showPage('articlePage');
 }
+
+const form = document.getElementById('music-club-form');
+const statusMessage = document.getElementById('status-message');
+
+const formEndpoint = "https://formsubmit.co/your@email.com"; 
+
+form.addEventListener('submit', function(event) {
+    event.preventDefault(); // Prevent the default form submission
+
+    const formData = new FormData(form);
+    const data = Object.fromEntries(formData.entries());
+    
+    fetch(formEndpoint, {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json',
+            'Accept': 'application/json'
+        },
+        body: JSON.stringify(data)
+    })
+    .then(response => {
+        if (response.ok) {
+            form.reset(); 
+            statusMessage.textContent = "Sign-up successful! We'll see you there.";
+            statusMessage.className = 'status-message success';
+        } else {
+            statusMessage.textContent = "There was an error submitting your request. Please try again.";
+            statusMessage.className = 'status-message error';
+        }
+    })
+    .catch(error => {
+        console.error('Error:', error);
+        statusMessage.textContent = "There was an error submitting your request. Please try again.";
+        statusMessage.className = 'status-message error';
+    });
+});
+
